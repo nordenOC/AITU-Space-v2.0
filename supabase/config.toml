@@ -1,0 +1,19 @@
+project_id = "aitu-space"
+
+# Functions verify the JWT themselves (supabase.auth.getUser) AFTER the IP rate limit,
+# so unauthenticated floods are throttled too. Do not switch to verify_jwt = true
+# without moving the IP limiter in front of it.
+[functions.bookings-create]
+verify_jwt = false
+[functions.bookings-cancel]
+verify_jwt = false
+[functions.qr-issue]
+verify_jwt = false
+[functions.qr-confirm]
+verify_jwt = false
+
+[auth]
+enable_signup = true
+[auth.email]
+enable_confirmations = true
+otp_length = 6
